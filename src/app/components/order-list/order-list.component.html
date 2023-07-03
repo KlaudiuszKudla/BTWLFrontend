@@ -1,0 +1,20 @@
+<div class="orders">
+  <div class="order" *ngFor="let order of orders">
+    <div class="package-size">STATUS: {{ order.status}}</div>
+    <div class="addresses">
+      <div class="starting-address">{{ order.startingAddress?.city }}</div>
+      <div class="arrow">
+        <i class='fas fa-arrow-right' style='font-size:24px'></i>
+      </div>
+      <div class="target-address">{{ order.targetAddress?.city }}</div>
+    </div>
+    <div class="size">ROZMIAR PACZKI: {{order.blackBox?.size}} </div>
+    <div class="buttons">
+      <a [routerLink]="['/order/tracking', order.trackingCode, 'map']">Śledź paczkę</a>
+      <a [routerLink]="['/order', order.id]">Details</a>
+      <button  (click)="confirmSubmit(order)">Otwórz paczkę</button>
+    </div>
+  </div>
+</div>
+
+

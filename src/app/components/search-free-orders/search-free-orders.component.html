@@ -1,0 +1,34 @@
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+<div class="orders">
+    <div class="order" *ngFor="let order of orders">
+
+      <div class="package-size">STATUS: {{ order.status}}</div>
+      <div class="addresses">
+        <div class="startingAdresses">
+          <div class="address">{{ order.startingAddress?.city }},</div>
+          <div class="address">{{ order.startingAddress?.street }}</div>
+          <div class="address">{{ order.startingAddress?.houseNumber }},</div>
+          <div class="address">{{ order.startingAddress?.zipCode }}</div>
+        </div>
+
+        <div class="arrow">
+          <i class='fas fa-arrow-right' style='font-size:24px'></i>
+        </div>
+
+        <div class="targetAddresses">
+          <div class="address">{{ order.targetAddress?.city }},</div>
+          <div class="address">{{ order.targetAddress?.street }}</div>
+          <div class="address">{{ order.targetAddress?.houseNumber }},</div>
+          <div class="address">{{ order.startingAddress?.zipCode }}</div>
+        </div>
+      </div>
+
+      <div class="size">ROZMIAR PACZKI: {{order?.blackBox?.size}}</div>
+      <div class="buttons">
+        <button (click)="createTransport(order)">Przyjmij zlecenie</button>
+      </div>
+
+    </div>
+  </div>
+  

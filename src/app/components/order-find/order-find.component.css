@@ -1,0 +1,48 @@
+.container {
+    margin-bottom: 30vh;
+}
+
+.findOrder {
+    display: grid;
+    grid-template-columns: 37% 63%;
+    align-items: center;
+    background-color: rgb(235, 233, 233);
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.findOrder label {
+    font-size: 100%;
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+input[type=text] {
+    justify-self: start;
+    background-color: #fffdfd;
+    width: 90%;
+    padding: 12px 20px;
+    margin: 5px;
+    box-sizing: border-box;
+    border: 0;
+    border-radius: 5px;
+}
+
+.submitting {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.submitting button{
+    padding: 10px;
+    background-color: #84d4c8;
+    border: 0 none;
+    cursor: pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    font-size: 100%;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #ffffff;
+}

@@ -1,0 +1,480 @@
+<link rel="stylesheet" href="checkout.component.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;800&display=swap" rel="stylesheet">
+
+
+<div class="title">
+    <div class="box"><i class="fa-solid fa-box-open fa-lg" style="color: #ffffff; font-size: 2.2em"></i></div>
+    <h3 id="slogan">Wyślij paczkę!</h3>
+</div>
+
+<div>
+    <div>
+        <div>
+            <form [formGroup]="checkoutFormGroup" (ngSubmit)="onSubmit()">
+                <fieldset class="sizeChoice">
+                  <div class="sizing" formGroupName="blackBox">
+                    <label *ngFor="let blackBox of blackBoxes">
+                        <div class="blackBoxInfo">
+                          <div>
+                            <div>Wielkość: {{ blackBox.size }}</div>
+                            <div>Adres: {{blackBox.currentPickupAddress?.street}}</div>
+                            <div>Numer: {{blackBox.currentPickupAddress?.houseNumber}}</div>
+                            <div>Kod pocztowy: {{blackBox.currentPickupAddress?.zipCode}}</div>
+                            <div>Miasto: {{blackBox.currentPickupAddress?.city}}</div>
+                          </div>
+                          <div>
+                            <input type="radio" [value]="blackBox.id" formControlName="id" (change)="selectBlackBox(blackBox)">
+                          </div>
+                        </div>
+                    </label>
+                  </div>
+                </fieldset>
+
+
+
+
+                <!-- sender  -->
+
+                <div *ngIf="!isLoggedIn()" formGroupName="sender">
+                    <div class="labelsTitle">
+                        <h3 class="titleOfLabels">Dane wysyłającego</h3>
+                    </div>
+                    <div>
+                        <div class="labels"> <label>Imię</label></div>
+                        <div>
+                            <div class="input">
+                                <input formControlName="firstName" type="text">
+
+                                <div *ngIf="senderFirstName?.invalid && (senderFirstName?.dirty || senderFirstName?.touched)">
+
+                                    <div
+                                        *ngIf="senderFirstName?.errors?.['required'] || senderFirstName?.errors?.['notOnlyWhitespace']">
+                                        Imie jest wymagane
+                                    </div>
+
+                                    <div *ngIf="senderFirstName?.errors?.['minlength']">
+                                        Imie musi się składać co najmniej z 2 liter
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="labels"> <label>Nazwisko</label></div>
+                        <div>
+                            <div class="input">
+                                <input formControlName="lastName" type="text">
+
+                                <div *ngIf="senderLastName?.invalid && (senderLastName?.dirty || senderLastName?.touched)">
+
+                                    <div
+                                        *ngIf="senderLastName?.errors?.['required'] || senderLastName?.errors?.['notOnlyWhitespace']">
+                                        Nazwisko jest wymagane
+                                    </div>
+
+                                    <div *ngIf="senderLastName?.errors?.['minlength']">
+                                        Nazwisko musi się składać co najmniej z 2 liter
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="labels"> <label>Email</label></div>
+                        <div>
+                            <div class="input">
+                                <input formControlName="email" type="text">
+
+                                <div *ngIf="senderEmail?.invalid && (senderEmail?.dirty || senderEmail?.touched)">
+
+                                    <div *ngIf="senderEmail?.errors?.['required']">
+                                        senderEmail jest wymagany
+                                    </div>
+
+                                    <div *ngIf="senderEmail?.errors?.['pattern']">
+                                        Nieprawidłowy format
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="labels"> <label>Numer telefonu</label></div>
+                        <div>
+                            <div class="input">
+                                <input formControlName="phoneNumber" type="text">
+
+                                <div *ngIf="senderPhoneNumber?.invalid && (senderPhoneNumber?.dirty || senderPhoneNumber?.touched)">
+
+                                    <div *ngIf="senderPhoneNumber?.errors?.['required']">
+                                        Numer telefonu jest wymagany
+                                    </div>
+
+                                    <div *ngIf="senderPhoneNumber?.errors?.['pattern']">
+                                        Numer telefonu musi składać się z 9 cyfr
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+                <div formGroupName="recipient">
+                    <div class="labelsTitle">
+                        <h3 class="titleOfLabels">Dane odbierającego</h3>
+                    </div>
+                    <div>
+                        <div class="labels"> <label>Imię</label></div>
+                        <div>
+                            <div class="input">
+                                <input formControlName="firstName" type="text">
+
+                                <div *ngIf="recipientFirstName?.invalid && (recipientFirstName?.dirty || recipientFirstName?.touched)">
+
+                                    <div
+                                        *ngIf="recipientFirstName?.errors?.['required'] || recipientFirstName?.errors?.['notOnlyWhitespace']">
+                                        Imie jest wymagane
+                                    </div>
+
+                                    <div *ngIf="recipientFirstName?.errors?.['minlength']">
+                                        Imie musi się składać co najmniej z 2 liter
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="labels"> <label>Nazwisko</label></div>
+                        <div>
+                            <div class="input">
+                                <input formControlName="lastName" type="text">
+
+                                <div *ngIf="recipientLastName?.invalid && (recipientLastName?.dirty || recipientLastName?.touched)">
+
+                                    <div
+                                        *ngIf="recipientLastName?.errors?.['required'] || recipientLastName?.errors?.['notOnlyWhitespace']">
+                                        Nazwisko jest wymagane
+                                    </div>
+
+                                    <div *ngIf="recipientLastName?.errors?.['minlength']">
+                                        Nazwisko musi się składać co najmniej z 2 liter
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="labels"> <label>Email</label></div>
+                        <div>
+                            <div class="input">
+                                <input formControlName="email" type="text">
+
+                                <div *ngIf="recipientEmail?.invalid && (recipientEmail?.dirty || recipientEmail?.touched)">
+
+                                    <div *ngIf="recipientEmail?.errors?.['required']">
+                                        Email jest wymagany
+                                    </div>
+
+                                    <div *ngIf="recipientEmail?.errors?.['pattern']">
+                                        Nieprawidłowy format
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="labels"> <label>Numer telefonu</label></div>
+                        <div>
+                            <div class="input">
+                                <input formControlName="phoneNumber" type="text">
+
+                                <div *ngIf="recipientPhoneNumber?.invalid && (recipientPhoneNumber?.dirty || recipientPhoneNumber?.touched)">
+
+                                    <div *ngIf="recipientPhoneNumber?.errors?.['required']">
+                                        Numer telefonu jest wymagany
+                                    </div>
+
+                                    <div *ngIf="recipientPhoneNumber?.errors?.['pattern']">
+                                        Numer telefonu musi składać się z 9 cyfr
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+                <div *ngIf="!isLoggedIn()" formGroupName="pickupAddress">
+                    <div class="labelsTitle">
+                        <h3 class="titleOfLabels">Adres odbioru paczki</h3>
+                    </div>
+
+
+                    <div>
+                        <div class="labels"> <label>Ulica</label></div>
+                        <div>
+                            <div class="input">
+                                <input formControlName="street" type="text">
+
+                                <div
+                                    *ngIf="pickupAddressStreet?.invalid && (pickupAddressStreet?.dirty || pickupAddressStreet?.touched)">
+
+                                    <div
+                                        *ngIf="pickupAddressStreet?.errors?.['required'] || pickupAddressStreet?.errors?.['notOnlyWhitespace']">
+                                        Musisz podać swój adres
+                                    </div>
+
+                                    <div *ngIf="pickupAddressStreet?.errors?.['minlength']">
+                                        Adres musi się składać co najmniej z 2 liter
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="labels"> <label>Numer domu</label></div>
+                        <div>
+                            <div class="input">
+                                <input formControlName="houseNumber" type="text">
+
+                                <div
+                                    *ngIf="pickupAddressHouseNumber?.invalid && (pickupAddressHouseNumber?.dirty || pickupAddressHouseNumber?.touched)">
+
+                                    <div
+                                        *ngIf="pickupAddressHouseNumber?.errors?.['required'] || pickupAddressHouseNumber?.errors?.['notOnlyWhitespace']">
+                                        Musisz podać numer domu
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="labels"> <label>Kod pocztowy</label></div>
+                        <div>
+                            <div class="input">
+                                <input formControlName="zipCode" type="text">
+
+                                <div
+                                    *ngIf="pickupAddressZipCode?.invalid && (pickupAddressZipCode?.dirty || pickupAddressZipCode?.touched)">
+
+                                    <div *ngIf="pickupAddressZipCode?.errors?.['required']">
+                                        Kod pocztowy jest wymagany
+                                    </div>
+
+                                    <div *ngIf="pickupAddressZipCode?.errors?.['pattern']">
+                                        Nieprawidłowy format
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="labels"> <label>Miasto</label></div>
+                        <div>
+                            <div class="input">
+                                <input formControlName="city" type="text">
+
+                                <div
+                                    *ngIf="pickupAddressCity?.invalid && (pickupAddressCity?.dirty || pickupAddressCity?.touched)">
+
+                                    <div
+                                        *ngIf="pickupAddressCity?.errors?.['required'] || pickupAddressCity?.errors?.['notOnlyWhitespace']">
+                                        Miasto jest wymagane
+                                    </div>
+
+                                    <div *ngIf="pickupAddressCity?.errors?.['minlength']">
+                                        Miasto musi się składać z co najmniej 2 liter
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="labels"> <label>Opis</label></div>
+                        <div>
+                            <div class="input">
+                                <input formControlName="description" type="text">
+
+                                <div
+                                    *ngIf="pickupAddressDescription?.invalid && (pickupAddressDescription?.dirty || pickupAddressDescription?.touched)">
+
+                                    <div *ngIf="pickupAddressDescription?.errors?.['maxlength']">
+                                        Opis może maksymalnie zawierać 50 znaków
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+                <!-- customer orm group -->
+                <div formGroupName="deliveryAddress">
+                    <div class="labelsTitle">
+                        <h3 class="titleOfLabels">Adres dostawy paczki</h3>
+                    </div>
+
+                    <div>
+                        <div class="labels"> <label>Ulica</label></div>
+                        <div>
+                            <div class="input">
+                                <input formControlName="street" type="text">
+
+                                <div
+                                    *ngIf="deliveryAddressStreet?.invalid && (deliveryAddressStreet?.dirty || deliveryAddressStreet?.touched)">
+
+                                    <div
+                                        *ngIf="deliveryAddressStreet?.errors?.['required'] || deliveryAddressStreet?.errors?.['notOnlyWhitespace']">
+                                      Ulica jest wymagana
+                                    </div>
+
+                                    <div *ngIf="deliveryAddressStreet?.errors?.['minlength']">
+                                      Ulica musi się składać co najmniej z 2 liter
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="labels"> <label>Numer domu</label></div>
+                        <div>
+                            <div class="input">
+                                <input formControlName="houseNumber" type="text">
+
+                                <div
+                                    *ngIf="deliveryAddressHouseNumber?.invalid && (deliveryAddressHouseNumber?.dirty || deliveryAddressHouseNumber?.touched)">
+
+                                    <div
+                                        *ngIf="deliveryAddressHouseNumber?.errors?.['required'] || deliveryAddressHouseNumber?.errors?.['notOnlyWhitespace']">
+                                        Musisz podać numer domu
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div>
+                        <div class="labels"> <label>Kod pocztowy</label></div>
+                        <div>
+                            <div class="input">
+                                <input formControlName="zipCode" type="text">
+
+                                <div
+                                    *ngIf="deliveryAddressZipCode?.invalid && (deliveryAddressZipCode?.dirty || deliveryAddressZipCode?.touched)">
+
+                                    <div *ngIf="deliveryAddressZipCode?.errors?.['required']">
+                                        Kod pocztowy jest wymagany
+                                    </div>
+
+                                    <div *ngIf="deliveryAddressZipCode?.errors?.['pattern']">
+                                        Nieprawidłowy format
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="labels"> <label>Miasto</label></div>
+                        <div>
+                            <div class="input">
+                                <input formControlName="city" type="text">
+
+                                <div
+                                    *ngIf="deliveryAddressCity?.invalid && (deliveryAddressCity?.dirty || deliveryAddressCity?.touched)">
+
+                                    <div
+                                        *ngIf="deliveryAddressCity?.errors?.['required'] || deliveryAddressCity?.errors?.['notOnlyWhitespace']">
+                                        Miasto jest wymagane
+                                    </div>
+
+                                    <div *ngIf="deliveryAddressCity?.errors?.['minlength']">
+                                        Miasto musi się składać z co najmniej 2 liter
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="labels"> <label>Opis</label></div>
+                        <div>
+                            <div class="input">
+                                <input formControlName="description" type="text">
+
+                                <div
+                                    *ngIf="deliveryAddressDescription?.invalid && (deliveryAddressDescription?.dirty || deliveryAddressDescription?.touched)">
+
+                                    <div *ngIf="deliveryAddressDescription?.errors?.['maxlength']">
+                                        Opis może maksymalnie zawierać 50 znaków
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+                <div class="submitting">
+                    <button type="submit">Zgłoś paczkę</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>

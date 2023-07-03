@@ -1,0 +1,21 @@
+* {
+    font-family: 'Nunito Sans', sans-serif;
+    /* box-sizing: border-box; */
+}
+
+app-home {
+    padding-bottom: 30px;
+}
+
+html {
+    margin: 0px;
+    height: 100%;
+    width: 100%;
+ }
+
+
+ body {
+    margin: 0px;
+    min-height: 100%;
+    width: 100%;
+ }

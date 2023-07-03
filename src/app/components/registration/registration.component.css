@@ -1,0 +1,86 @@
+.title {
+    display: flex;
+    flex-direction: row;
+    background-color: #84d4c8;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    margin-bottom: 1px;
+}
+
+.transition{
+    transition: background-color 0.5s ease;
+}
+
+input[type=text] {
+    background-color: white;
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px;
+    box-sizing: border-box;
+    border: 0;
+    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.2);
+  }
+
+.submitting {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.submitting button{
+    padding:20px;
+    background-color:#84d4c8;
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #ffffff;
+}
+
+#slogan {
+    text-align: center;
+    font-size: 30px;
+    padding: 5px;
+    padding-top: 25px;
+    margin: 0;
+    color: white;
+    height: 70px;
+    border: 0;
+}
+
+.labels {
+    margin-top: 20px;
+    margin: 8px;
+    font-size: 125%;
+    font-weight: 600;
+    display: flex;
+    justify-content: start;
+}
+
+.labelsTitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.titleOfLabels {
+    font-size: 130%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #84d4c8;
+    color: white;
+    width: 100%;
+    height: 100%;
+    border-radius: 3px;
+    padding: 10px;
+}
+
+  
+  

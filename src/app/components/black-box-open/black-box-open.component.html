@@ -1,0 +1,21 @@
+<form [formGroup]="blackBoxFormGroup" (ngSubmit)="onSubmit()">
+    <div formGroupName="order">
+      <div class="content">
+        <div class="order">
+          <label for="id">ID zamówienia: </label>
+          <input type="text" id="id" formControlName="id">
+        </div>
+        <div class="order">
+          <label for="openCode">Kod otwarcia: </label>
+          <input type="text" id="openCode" formControlName="openCode">
+        </div>
+
+      </div>
+
+      <div class="submitting">
+        <button type="submit" (click)="confirmSubmit()">Otwórz</button>
+      </div>
+    </div>
+
+  </form>
+  

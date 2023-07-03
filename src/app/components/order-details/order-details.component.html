@@ -1,0 +1,37 @@
+<div id="container">
+
+  <div id="title">
+    <h1>Szczegóły dotyczące przesyłki</h1>
+  </div>
+
+  <div id="list">
+
+    <ul>
+      <li><strong>Numer identyfikacyjny paczki:</strong> {{ order?.id}}</li>
+      <li><strong>Numer do śledzenia paczki:</strong> {{ order?.trackingCode }}</li>
+      <li><strong>Kod otwarcia:</strong> {{ order?.openCode }}</li>
+      <li><strong>Całkowita cena:</strong> {{ order?.totalPrice }}</li>
+      <li><strong>Status paczki</strong> {{ order?.status }}</li>
+      
+      <li><strong>Data Utworzenia:</strong> {{ order?.dateCreated }}</li>
+      <li><strong>Ostatnia aktualizacji:</strong> {{ order?.lastUpdated }}</li>
+      
+      <div class="seePackageLocation">
+        <a [routerLink]="['/order/tracking', order?.trackingCode, 'map']">Śledź paczkę</a>
+      </div>
+
+      <h3>Miejsce nadania</h3>
+      <li><strong>Ulica:</strong> {{ order?.startingAddress?.street }}</li>
+      <li><strong>Numer domu:</strong> {{ order?.startingAddress?.houseNumber }}</li>
+      <li><strong>Miasto:</strong> {{ order?.startingAddress?.city }}</li>
+      <li><strong>Kod pocztowy:</strong> {{ order?.startingAddress?.zipCode }}</li>
+      <h3>Miejsce dostarczenia</h3>
+      <li><strong>Ulica:</strong> {{ order?.targetAddress?.street }}</li>
+      <li><strong>Numer domu:</strong> {{ order?.targetAddress?.houseNumber }}</li>
+      <li><strong>Miasto:</strong> {{ order?.targetAddress?.city }}</li>
+      <li><strong>Kod pocztowy:</strong> {{ order?.targetAddress?.zipCode }}</li>
+    </ul>
+
+  </div>
+
+</div>

@@ -1,0 +1,25 @@
+<div class="container">
+  <form [formGroup]="blackBoxFormGroup" (ngSubmit)="onSubmit()">
+    <div formGroupName="order">
+
+      <div class="findOrder">
+        <label for="trackingNumber">Numer przesyłki:</label>
+        <input type="text" id="trackingNumber" formControlName="trackingNumber">
+      </div>
+
+    </div>
+
+    <div class="submitting">
+      <button type="submit">Submit</button>
+    </div>
+  </form>
+
+  <div *ngIf="order">
+    <h2><b>Szczegóły zamówienia</b></h2>
+    <div class="info"><b>Numer przesyłki</b>: {{ order.trackingCode }}</div>
+    <div class="info"><b>Numer ID paczki</b>: {{ order.id }}</div>
+    <div class="info"><b>Status paczki</b>: {{ order.status }}</div>
+    <div class="info"><b>Data utworzenia</b>: {{ order.dateCreated }}</div>
+    <div class="info"><b>Ostatnia aktualizacja</b>: {{ order.lastUpdated }}</div>
+  </div>
+</div>

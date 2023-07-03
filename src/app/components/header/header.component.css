@@ -1,0 +1,375 @@
+header {
+    display: grid;
+    grid-area: header;
+    grid-template-columns: 1fr;
+    grid-auto-rows: minmax(70px, auto);
+    grid-template-areas:
+    "content";
+    border-bottom-width: 1vmax;
+    border-bottom-style: solid;
+    border-bottom-color: #84d4c8;
+    position: relative;
+}
+
+.upperContent {
+    padding: 10px;
+    grid-area: content;
+    display: grid;
+    grid-template-columns: 2% 64% 32%;
+    grid-auto-rows: minmax(70px, auto);
+    grid-template-areas:
+    "menu logo logAndSign";
+    border: none;
+}
+
+.logAndSign {
+    display: grid;
+    grid-area: logAndSign;
+}
+
+.login {
+    display: flex;
+    margin: 10px;
+    width: 50%;
+    align-self: center;
+    justify-self: end;
+}
+
+.loginButton {
+    width: 120%;
+    background-color: #84d4c8;
+    border-radius: 30px;
+    border: none;
+    color: white;
+    padding: 10px;
+    font-size: 100%;
+    cursor: pointer;
+}
+
+.signIn {
+    display: flex;
+    margin: 10px;
+    width: 50%;
+    align-self: center;
+    justify-self: end;
+}
+
+.signInButton {
+    width: 120%;
+    background-color: #84d4c8;
+    border-radius: 30px;
+    border: none;
+    color: white;
+    padding: 10px;
+    font-size: 100%;
+    cursor: pointer;
+    align-self: center;
+}
+
+#logo {
+    margin-left: 10px;
+    font-size: 250%;
+    padding: 10px;
+    grid-area: logo;
+    justify-content: start;
+}
+
+a:link {
+  text-decoration: none!important;
+}
+
+#com {
+    margin-right: 10px;
+    border-right: solid;
+    border-right-width: 7px;
+    padding-right: 10px;
+    color: black;
+}
+
+.menu {
+    padding-left: 25px;
+    width: auto;
+    display: grid;
+    grid-area: menu;
+    align-items: center;
+    justify-content: end;
+}
+
+#box {
+    color: #09b2e1f2;
+}
+
+/* For mobile devices */
+@media only screen and (max-width: 524px) {
+    .upperContent {
+        padding: 10px;
+        grid-area: content;
+        display: grid;
+        grid-template-columns: 5% 95%;
+        grid-auto-rows: minmax(70px, auto);
+        grid-template-areas:
+        "menu logo"
+        "logAndSign logAndSign";
+        border: none;
+    }
+
+    .logAndSign {
+        display: grid;
+        grid-area: logAndSign;
+    }
+
+    .login {
+        margin: 10px;
+        align-self: center;
+        justify-self: center;
+    }
+
+    .loginButton {
+        width: 100%;
+        background-color: #84d4c8;
+        border-radius: 30px;
+        border: none;
+        color: white;
+        padding: 10px;
+        font-size: 100%;
+        cursor: pointer;
+    }
+
+    .signIn {
+        margin: 10px;
+        align-self: center;
+        justify-self: center;
+    }
+
+    .signInButton {
+        width: 100%;
+        background-color: #84d4c8;
+        border-radius: 30px;
+        border: none;
+        color: white;
+        padding: 10px;
+        font-size: 100%;
+        cursor: pointer;
+    }
+
+    #logo {
+        margin-left: 10px;
+        font-size: 250%;
+        padding: 10px;
+        grid-area: logo;
+        justify-content: start;
+    }
+
+    #logo {
+        margin-left: 10px;
+        font-size: 250%;
+        padding: 10px;
+        grid-area: logo;
+        justify-content: start;
+    }
+}
+
+@media only screen and (max-width: 430px) {
+    .upperContent {
+        padding: 10px;
+        grid-area: content;
+        display: grid;
+        grid-template-columns: 5% 95%;
+        grid-auto-rows: minmax(70px, auto);
+        grid-template-areas:
+        "menu logo"
+        "logAndSign logAndSign";
+        border: none;
+    }
+
+    .logAndSign {
+        display: grid;
+        grid-area: logAndSign;
+    }
+
+    .login {
+        margin: 10px;
+        align-items: center;
+    }
+
+    .loginButton {
+        width: 100%;
+        background-color: #84d4c8;
+        border-radius: 30px;
+        border: none;
+        color: white;
+        padding: 10px;
+        font-size: 100%;
+        cursor: pointer;
+        align-self: center;
+    }
+
+    .signIn {
+        margin: 10px;
+        align-items: center;
+    }
+
+    .signInButton {
+        width: 100%;
+        background-color: #84d4c8;
+        border-radius: 30px;
+        border: none;
+        color: white;
+        padding: 10px;
+        font-size: 100%;
+        cursor: pointer;
+        align-self: center;
+    }
+
+    #logo {
+        margin-left: 10px;
+        font-size: 150%;
+        padding: 10px;
+        grid-area: logo;
+        justify-content: start;
+    }
+}
+
+@media only screen and (max-width: 296px) {
+    .upperContent {
+        padding: 10px;
+        grid-area: content;
+        display: grid;
+        grid-template-columns: 5% 95%;
+        grid-auto-rows: minmax(70px, auto);
+        grid-template-areas:
+        "menu logo"
+        "logAndSign logAndSign";
+        border: none;
+    }
+
+    .logAndSign {
+        display: grid;
+        grid-area: logAndSign;
+    }
+
+    .login {
+        margin: 10px;
+        align-items: center;
+    }
+
+    .loginButton {
+        width: 100%;
+        background-color: #84d4c8;
+        border-radius: 30px;
+        border: none;
+        color: white;
+        padding: 10px;
+        font-size: 100%;
+        cursor: pointer;
+        align-self: center;
+    }
+
+    .signIn {
+        margin: 10px;
+        align-items: center;
+    }
+
+    .signInButton {
+        width: 100%;
+        background-color: #84d4c8;
+        border-radius: 30px;
+        border: none;
+        color: white;
+        padding: 10px;
+        font-size: 100%;
+        cursor: pointer;
+        align-self: center;
+    }
+
+    #logo {
+        margin-left: 10px;
+        font-size: 100%;
+        padding: 10px;
+        grid-area: logo;
+        justify-content: start;
+    }
+
+    .menu {
+        font-size: 0.8em;
+    }
+}
+@media only screen and (max-width: 230px) {
+    .upperContent {
+        padding: 10px;
+        grid-area: content;
+        display: grid;
+        grid-template-columns: 5% 95%;
+        grid-auto-rows: minmax(70px, auto);
+        grid-template-areas:
+        "menu logo"
+        "logAndSign logAndSign";
+        border: none;
+    }
+}
+
+.panel {
+    /*position: absolute;*/
+    /*border-style: solid;*/
+    /*border-color: #bab6b6;*/
+    /*top: 30%;*/
+    /*left: -250px;*/
+    /*width: 45%;*/
+    /*height: 100vh;*/
+    /*background-color: #fff;*/
+    /*transition: left 0.3s ease;*/
+    /*z-index: 999;*/
+    /*overflow-y: auto;*/
+    position: absolute;
+    left: -250px;
+    width: 250px;
+    height: 100vh;
+    background-color: #f1f1f1;
+    transition: left 0.3s ease;
+    z-index: 999;
+    overflow-y: auto;
+  }
+
+.panel ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.panel ul li button {
+    justify-self: center;
+    display: grid;
+    min-height: 50px;
+    width: 125px;
+    height: 50px;
+    background-color: #84d4c8;
+    color: white;
+    font-size: 100%;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 5px;
+    margin: 15px;
+}
+
+.panel ul li a {
+color: #333;
+text-decoration: none;
+}
+
+.panel ul li a:hover {
+color: #555;
+}
+
+.panel-open {
+left: 0;
+}

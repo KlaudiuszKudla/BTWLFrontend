@@ -1,0 +1,40 @@
+<header>
+    <div class="upperContent">
+      <div class="menu">
+        <a (click)="togglePanel()">
+          <i class="fa-sharp fa-solid fa-bars" style="color: #000000; font-size: 2.3em;"></i>
+        </a>
+      </div>
+
+      <h1 id="logo">
+        <a href=#><span id="com">COMARCH</span></a>
+        <a href=#><span id="box">BOX</span></a>
+      </h1>
+
+      <div class="logAndSign">
+        <div class="login">
+          <button *ngIf="isLoggedIn()" class="loginButton" (click)="logout()">Wyloguj się</button>
+          <button *ngIf="!isLoggedIn()" class="loginButton" routerLink="/login">Logowanie</button>
+        </div>
+
+        <div class="signIn">
+          <button *ngIf="!isLoggedIn()" class="signInButton" routerLink="/signIn">Rejestracja</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" [ngClass]="{'panel-open': isPanelOpen}" (click)="togglePanel()">
+        <ul>
+          <div class="buttons">
+            <li><button routerLink="/checkout">Wyślij paczkę</button></li>
+            <li *ngIf="isLoggedIn()"><button routerLink="/order/free">Szukaj zlecenia</button></li>
+            <li *ngIf="isLoggedIn()"><button routerLink="/order/sender">Twoje wysłane paczki</button></li>
+            <li *ngIf="isLoggedIn()"><button routerLink="/order/recipient">Twoje odebrane paczki</button></li>
+            <li *ngIf="isLoggedIn()"><button routerLink="/transport/">Twoje Transporty</button></li>
+            <li><button routerLink="/blackBox/open">Otwórz paczkę</button></li>
+            <li><button routerLink="/findOrder">Znajdź paczkę</button></li>
+          </div>
+        </ul>
+    </div>
+
+  </header>

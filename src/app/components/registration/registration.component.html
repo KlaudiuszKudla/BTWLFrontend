@@ -1,0 +1,275 @@
+<link rel="stylesheet" href="registration.component.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;800&display=swap" rel="stylesheet">
+
+<div>
+    <div>
+        <div>
+            <form [formGroup]="registrationFormGroup" (ngSubmit)="onSubmit()">
+
+                <!-- customer form group -->
+                <div formGroupName="user">
+                    <div class="labelsTitle">
+                        <h3 class="titleOfLabels">Dane użytkownika</h3>
+                    </div>
+                    <div>
+                        <div class="labels"> <label>Imię</label></div>
+                        <div>
+                            <div class="input-space">
+                                <input formControlName="firstName" type="text">
+
+                                <div *ngIf="userFirstName?.invalid && (userFirstName?.dirty || userFirstName?.touched)">
+
+                                    <div
+                                        *ngIf="userFirstName?.errors?.['required'] || userFirstName?.errors?.['notOnlyWhitespace']">
+                                        Imie jest wymagane
+                                    </div>
+
+                                    <div *ngIf="userFirstName?.errors?.['minlength']">
+                                        Imie musi się składać co najmniej z 2 liter
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="labels"> <label>Nazwisko</label></div>
+                        <div>
+                            <div>
+                                <input formControlName="lastName" type="text">
+
+                                <div *ngIf="userLastName?.invalid && (userLastName?.dirty || userLastName?.touched)">
+
+                                    <div
+                                        *ngIf="userLastName?.errors?.['required'] || userLastName?.errors?.['notOnlyWhitespace']">
+                                        Nazwisko jest wymagane
+                                    </div>
+
+                                    <div *ngIf="userLastName?.errors?.['minlength']">
+                                        Nazwisko musi się składać co najmniej z 2 liter
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="labels"> <label>Email</label></div>
+                        <div>
+                            <div>
+                                <input formControlName="email" type="text">
+
+                                <div *ngIf="userEmail?.invalid && (userEmail?.dirty || userEmail?.touched)">
+
+                                    <div *ngIf="userEmail?.errors?.['required']">
+                                        userEmail jest wymagany
+                                    </div>
+
+                                    <div *ngIf="userEmail?.errors?.['pattern']">
+                                        Nieprawidłowy format
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="labels"> <label>Password</label> </div>
+                        <div>
+                          <div>
+                            <input formControlName="password" type="text">
+                      
+                            <div *ngIf="userPassword?.invalid && (userPassword?.dirty || userPassword?.touched)">
+                              <div *ngIf="userPassword?.errors?.['required']">
+                                Password is required.
+                              </div>
+                              <div *ngIf="userPassword?.errors?.['minlength']">
+                                Password must be at least 8 characters long.
+                              </div>
+                              <div *ngIf="userPassword?.errors?.['pattern']">
+                                Password can only contain letters and numbers.
+                              </div>
+                            </div>
+                      
+                          </div>
+                        </div>
+                      </div>
+
+                      <div>
+                        <div class="labels">
+                          <label>Confirm Password</label>
+                        </div>
+                        <div>
+                          <div>
+                            <input formControlName="confirmPassword" type="text">
+                      
+                            <div *ngIf="userConfirmPassword?.errors?.['passwordMissMatch'] && (userConfirmPassword?.dirty || userConfirmPassword?.touched)">
+                                Hasła się różnią
+                            </div>
+                      
+                          </div>
+                        </div>
+                      </div>
+                      
+                      
+
+                    <div>
+                        <div class="labels"> <label>Numer telefonu</label></div>
+                        <div>
+                            <div>
+                                <input formControlName="phoneNumber" type="text">
+
+                                <div *ngIf="userPhoneNumber?.invalid && (userPhoneNumber?.dirty || userPhoneNumber?.touched)">
+
+                                    <div *ngIf="userPhoneNumber?.errors?.['required']">
+                                        Numer telefonu jest wymagany
+                                    </div>
+
+                                    <div *ngIf="userPhoneNumber?.errors?.['pattern']">
+                                        Numer telefonu musi składać się z 9 cyfr
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- customer orm group -->
+                <div formGroupName="address">
+                    <div class="labelsTitle">
+                        <h3 class="titleOfLabels">Adres</h3>
+                    </div>
+
+                    <div>
+                        <div class="labels"> <label>Ulica</label></div>
+                        <div>
+                            <div>
+                                <input formControlName="street" type="text">
+
+                                <div
+                                    *ngIf="addressStreet?.invalid && (addressStreet?.dirty || addressStreet?.touched)">
+
+                                    <div
+                                        *ngIf="addressStreet?.errors?.['required'] || addressStreet?.errors?.['notOnlyWhitespace']">
+                                        Mmiejscowość jest wymagana
+                                    </div>
+
+                                    <div *ngIf="addressStreet?.errors?.['minlength']">
+                                        Miejscowość musi się składać co najmniej z 2 liter
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="labels"> <label>Numer domu</label></div>
+                        <div>
+                            <div>
+                                <input formControlName="houseNumber" type="text">
+
+                                <div
+                                    *ngIf="addressHouseNumber?.invalid && (addressHouseNumber?.dirty || addressHouseNumber?.touched)">
+
+                                    <div
+                                        *ngIf="addressHouseNumber?.errors?.['required'] || addressHouseNumber?.errors?.['notOnlyWhitespace']">
+                                        Musisz podać numer domu
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                    <div>
+                        <div class="labels"> <label>Kod pocztowy</label></div>
+                        <div>
+                            <div>
+                                <input formControlName="zipCode" type="text">
+
+                                <div
+                                    *ngIf="addressZipCode?.invalid && (addressZipCode?.dirty || addressZipCode?.touched)">
+
+                                    <div *ngIf="addressZipCode?.errors?.['required']">
+                                        Kod pocztowy jest wymagany
+                                    </div>
+
+                                    <div *ngIf="addressZipCode?.errors?.['pattern']">
+                                        Nieprawidłowy format
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="labels"> <label>Miasto</label></div>
+                        <div>
+                            <div>
+                                <input formControlName="city" type="text">
+
+                                <div
+                                    *ngIf="addressCity?.invalid && (addressCity?.dirty || addressCity?.touched)">
+
+                                    <div
+                                        *ngIf="addressCity?.errors?.['required'] || addressCity?.errors?.['notOnlyWhitespace']">
+                                        Miasto jest wymagane
+                                    </div>
+
+                                    <div *ngIf="addressCity?.errors?.['minlength']">
+                                        Miasto musi się składać z co najmniej 2 liter
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="labels"> <label>Opis</label></div>
+                        <div>
+                            <div>
+                                <input formControlName="description" type="text">
+
+                                <div
+                                    *ngIf="addressDescription?.invalid && (addressDescription?.dirty || addressDescription?.touched)">
+
+                                    <div *ngIf="addressDescription?.errors?.['maxlength']">
+                                        Opis może maksymalnie zawierać 50 znaków
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                </div>
+
+                
+                <div class="submitting">
+                    <button type="submit">Zarejestruj się</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>                

@@ -1,0 +1,21 @@
+<link rel="stylesheet" href="home.component.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;800&display=swap" rel="stylesheet">
+
+<div id="content">
+    <main>
+        <h1 id="slogan"> Najlepszy social cargo w Polsce!</h1>
+
+        <div class="buttons">
+            <button routerLink="/checkout">Wyślij paczkę</button>
+            <button *ngIf="isLoggedIn()" routerLink="/order/free">Szukaj zlecenia</button>
+            <button *ngIf="isLoggedIn()" routerLink="/order/sender">Twoje wysłane paczki</button>
+            <button *ngIf="isLoggedIn()" routerLink="/order/recipient">Twoje odebrane paczki</button>
+            <button *ngIf="isLoggedIn()" routerLink="/transport/">Twoje Transporty</button>
+            <button routerLink="/blackBox/open">Otwórz paczkę</button>
+            <button routerLink="/findOrder">Znajdź paczkę</button>
+        </div>
+    </main>
+</div>

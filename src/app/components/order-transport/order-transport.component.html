@@ -1,0 +1,24 @@
+<div class="transports">
+  <div class="transport" *ngFor="let transport of transports">
+    <div class="details">
+      <div class="id"><b>Numer identyfikacyjny</b>: {{ transport.id }}</div>
+      <div class="user">{{ transport.transportUser }}</div>
+      <div class="pickup-time"><b>Data odbioru paczki</b>: {{ transport.pickupTime | date }}</div>
+      <div class="drop-time">{{ transport.dropTime | date }}</div>
+      <div class="order">{{ transport.order?.id }}</div>
+      <div class="drop-address">{{ transport.dropAddress?.street }}</div>
+    </div>
+
+    <div class="buttons">
+      <div class="buttons">
+        <a routerLink="{{ transport.id }}">Szczegóły</a>
+      </div>
+      <div class="buttons">
+        <button (click)="leaveTransport(transport.id)">Zostaw paczkę</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+  
